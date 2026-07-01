@@ -1,11 +1,11 @@
 
 
-def add_task():
+def add_task(task):
     task = input("Enter a task: ")
     tasks.append(task)
     print("Task added!")
 
-def edit_task():
+def edit_task(task):
     task_number = int(input("Enter task number: "))
     new_task = input("Enter new task: ")
 
