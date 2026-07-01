@@ -1,4 +1,4 @@
-tasks = []
+
 
 def add_task():
     task = input("Enter a task: ")
