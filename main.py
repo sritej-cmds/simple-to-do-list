@@ -1,19 +1,14 @@
+from addedit import add_task, edit_task
+from delete import delete_task
+
 tasks = [
     "Learn Git",
     "Learn Python",
     "Build To-Do App"
 ]
 
-def add_task():
-    pass
 
-def edit_task():
-    pass
-
-def delete_task():
-    pass
-
-def view_tasks():
+def view_tasks(tasks):
     print("\nTasks:")
 
     if not tasks:
@@ -23,33 +18,58 @@ def view_tasks():
     for i, task in enumerate(tasks, start=1):
         print(f"{i}. {task}")
 
-def complete_task():
-    view_tasks()
 
-    task_num = int(input("\nEnter task number to complete: "))
+def complete_task(tasks):
+    view_tasks(tasks)
 
-    if 1 <= task_num <= len(tasks):
-        tasks[task_num - 1] += " ✓"
-        print("Task completed!")
-    else:
-        print("Invalid task number")
+    if not tasks:
+        return
+
+    try:
+        task_num = int(input("\nEnter task number to complete: "))
+
+        if 1 <= task_num <= len(tasks):
+            if "✓" not in tasks[task_num - 1]:
+                tasks[task_num - 1] += " ✓"
+                print("Task completed!")
+            else:
+                print("Task is already completed.")
+        else:
+            print("Invalid task number.")
+
+    except ValueError:
+        print("Please enter a valid number.")
+
 
 while True:
     print("\n===== TO DO APP =====")
-    print("1. View Tasks")
-    print("2. Complete Task")
-    print("3. Exit")
+    print("1. Add Task")
+    print("2. Edit Task")
+    print("3. Delete Task")
+    print("4. View Tasks")
+    print("5. Complete Task")
+    print("6. Exit")
 
-    choice = input("Enter choice: ")
+    choice = input("Enter your choice: ")
 
     if choice == "1":
-        view_tasks()
+        add_task(tasks)
 
     elif choice == "2":
-        complete_task()
+        edit_task(tasks)
 
     elif choice == "3":
+        delete_task(tasks)
+
+    elif choice == "4":
+        view_tasks(tasks)
+
+    elif choice == "5":
+        complete_task(tasks)
+
+    elif choice == "6":
+        print("Goodbye!")
         break
 
     else:
-        print("Invalid choice")
+        print("Invalid choice. Please try again.")
