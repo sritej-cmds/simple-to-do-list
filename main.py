@@ -1,5 +1,5 @@
 from addedit import add_task, edit_task
-from delete import delete_task
+from app import delete_task
 
 tasks = [
     "Learn Git",
